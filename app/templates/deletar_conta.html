@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Twitter - Deletar Conta</title>
+{% endblock %}
+
+
+{% block body %}
+    {% if current_user.is_authenticated %}
+
+
+    <h1>Deletar Conta</h1>
+    <hr>
+    <br>
+
+
+        {% if error %}
+
+            <h3>Dados inválidos.</h3>
+            <br>
+
+        {% endif %}
+
+            <form action="{{ url_for('delete_user') }}" method="POST">
+
+                <div class="form-group col-3">
+                    <label for="password" class="form-label">Senha</label>
+                    <br>
+                    <input type="password" name="password" class="form-control" id="password">
+                </div>
+
+                <div class="form-group col-3">
+                    <label for="email" class="form-label">E-mail</label>
+                    <br>
+                    <input type="email" name="email" class="form-control" id="email">
+                </div>
+
+                <button type="submit" class="btn btn-outline-dark btn-lg bg-info"><strong>Deletar</strong></button>
+
+            </form>
+
+    {% else %}
+
+        <h3>Efetue o login antes de deletar a conta.</h3>
+
+    {% endif %}
+
+{% endblock %}

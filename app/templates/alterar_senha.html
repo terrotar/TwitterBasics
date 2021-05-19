@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Twitter - Alterar Dados</title>
+{% endblock %}
+
+
+{% block body %}
+    {% if current_user.is_authenticated %}
+
+
+    <h1>Alterar Senha</h1>
+    <hr>
+    <br>
+
+
+    {% if error %}
+
+        <h3>Dados inválidos.</h3>
+        <br>
+
+    {% endif %}
+
+        <form action="{{ url_for('update_pwd') }}" method="POST">
+
+            <div class="form-group col-3">
+                <label for="old_pwd" class="form-label">Senha Antiga</label>
+                <br>
+                <input type="old_pwd" name="old_pwd" class="form-control" id="old_pwd">
+            </div>
+
+            <div class="form-group col-3">
+                <label for="new_pwd" class="form-label">Senha Nova</label>
+                <br>
+                <input type="new_pwd" name="new_pwd" class="form-control" id="new_pwd">
+            </div>
+
+            <div class="form-group col-3">
+                <label for="email" class="form-label">E-mail para confirmar</label>
+                <br>
+                <input type="email" name="email" class="form-control" id="email">
+            </div>
+
+            <button type="submit" class="btn btn-outline-light btn-lg bg-primary"><strong>Alterar</strong></button>
+
+        </form>
+
+    {% else %}
+
+        <h3>Efetue o login antes de alterar os dados da conta.</h3>
+
+    {% endif %}
+
+{% endblock %}

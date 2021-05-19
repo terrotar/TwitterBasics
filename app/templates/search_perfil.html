@@ -1,0 +1,117 @@
+
+{% extends 'base.html' %}
+
+
+{% block head %}
+<title>Twitter - Perfil</title>
+{% endblock %}
+
+
+{% block body %}
+
+        <br>
+        <h1>Perfil de {{ user.username }}</h1>
+        <hr>
+        <br>
+
+
+
+        {% if not current_user.is_authenticated %}
+
+            <h3>Usuário não logado.</h3>
+
+          {% endif %}
+
+
+          {% if current_user.is_authenticated %}
+
+          <h3>{{ user.username }}</h3>
+          <br>
+          <a href ="{{ url_for('follow', user=current_user.username, username=user.username) }}" class="col-1">Seguir</a>
+          <a href ="{{ url_for('unfollow', user=current_user.username, username=user.username) }}" class="col-1">Deixar de Seguir</a>
+          <a href ="{{ url_for('followers', user=current_user.username, username=user.username) }}" class="col-2">Seguidores</a>
+          <a href ="{{ url_for('following', user=current_user.username, username=user.username) }}" class="col-2">Seguindo</a>
+
+
+
+
+          {% if followers %}
+          <br>
+          <br>
+
+
+          <h3>Seguidores</h3>
+
+          <br>
+
+            {% for user in followers %}
+
+                <p>{{ user }}</p>
+                
+                
+            {% endfor %}
+
+        {% endif %}
+
+
+        {% if following %}
+
+          <br>
+          <br>
+          <h3>Seguindo</h3>
+          <br>
+            {% for user in following %}
+
+
+                <p>{{ user }}</p>
+                
+
+            {% endfor %}
+
+        {% endif %}
+
+
+
+
+          {% if follow_error %}
+            <br>
+            <br>
+            <h3>{{ user.username }} já está sendo seguido ;D</h3>
+
+          {% endif %}
+
+
+          {% if unfollow_error %}
+            <br>
+            <br>
+            <h3>{{ user.username }} já não está sendo seguido ;D</h3>
+
+          {% endif %}
+
+
+          <hr>
+
+            <br>
+
+
+
+          {% endif %}
+
+
+          <br>
+          <h3>Tweets de {{ user.username }}</h3>
+          <hr>
+          <br>
+
+
+
+              {% for post in user.posts %}
+
+
+              <p>{{ post.content }}</p>
+              <hr>
+      <br>
+      {% endfor %}
+
+
+{% endblock %}

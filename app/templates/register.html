@@ -1,0 +1,60 @@
+
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Twitter - Cadastro</title>
+{% endblock %}
+
+{% block body %}
+
+        <h1>Criar Usuário</h1>
+        <hr>
+
+        {% if error_username %}
+
+          <h3>Username já registrado. Por favor, escolha outro.</h3>
+          <br>
+
+        {% endif %}
+
+
+        {% if error_email %}
+
+          <h3>E-mail já registrado. Por favor, escolha outro.</h3>
+          <br>
+
+        {% endif %}
+
+        <form action="/register" method="POST">
+
+            <div class="form-group col-3">
+              <label for="email" class="form-label">E-mail</label>
+              <br>
+              <input type="email" name="email" class="form-control" id="email">
+            </div>
+            <br>
+            <div class="form-group col-3">
+              <label for="password" class="form-label">Senha</label>
+              <br>
+              <input type="password" name="password" class="form-control" id="password">
+            </div>
+            <br>
+            <div class="form-group col-3">
+                <label for="name" class="form-label">Nome</label>
+                <br>
+                <input type="name" name="name" class="form-control" id="name">
+              </div>
+              <br>
+              <div class="form-group col-3">
+                <label for="username" class="form-label">Username</label>
+                <br>
+                <input type="username" name="username" class="form-control" id="username">
+              </div>
+              <br>
+
+              <button type="submit" class="btn btn-outline-light btn-lg bg-primary"><strong>Cadastrar</strong></button>
+
+          </form>
+
+
+{% endblock %}

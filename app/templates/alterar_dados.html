@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Twitter - Alterar Dados</title>
+{% endblock %}
+
+
+{% block body %}
+
+    {% if current_user.is_authenticated %}
+
+    <h1>Alterar Dados</h1>
+    <hr>
+    <br>
+
+
+        {% if error %}
+
+            <h3>Dados inválidos.</h3>
+            <br>
+
+        {% endif %}
+
+        <form action="{{ url_for('update_data') }}" method="POST">
+
+            <div class="form-group col-3">
+                <label for="name" class="form-label">Novo Nome</label>
+                <br>
+                <input type="name" name="name" class="form-control" id="name">
+            </div>
+            <br>
+            <div class="form-group col-3">
+                <label for="username" class="form-label">Novo Username</label>
+                <br>
+                <input type="username" name="username" class="form-control" id="username">
+            </div>
+            <br>
+
+            <div class="form-group col-3">
+                <label for="email" class="form-label">E-mail para confirmar</label>
+                <br>
+                <input type="email" name="email" class="form-control" id="email">
+            </div>
+
+            <div class="form-group col-3">
+                <label for="password" class="form-label">Senha para confirmar</label>
+                <br>
+                <input type="password" name="password" class="form-control" id="password">
+            </div>
+
+            <button type="submit" class="btn btn-outline-light btn-lg bg-primary"><strong>Alterar</strong></button>
+
+        </form>
+
+    {% else %}
+
+        <h3>Efetue o login antes de alterar os dados da conta.</h3>
+
+    {% endif %}
+
+{% endblock %}

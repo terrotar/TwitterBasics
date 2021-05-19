@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<title>Twitter - Seguidores</title>
+{% endblock %}
+
+
+{% block body %}
+
+        <br>
+        <h1>Perfil de {{ user.username }}</h1>
+        <hr>
+        <br>
+
+
+
+        {% if not current_user.is_authenticated %}
+
+            <h3>Usuário não logado.</h3>
+
+          {% endif %}
+
+
+          {% if current_user.is_authenticated %}
+
+          <h3>{{ user.username }}</h3>
+          <br>
+          
+          
+
+
+        {% if followers %}
+
+            {% for user in followers %}
+
+                <h3>Seguidores</h3>
+
+                <p>{{ user.username }}</p>
+
+            {% endfor %}
+
+        {% endif %}
+
+
+
+
+          {% if follow_error %}
+            <br>
+            <br>
+            <h3>{{ user.username }} já está sendo seguido ;D</h3>
+
+          {% endif %}
+
+          <hr>
+
+            <br>
+
+
+
+          {% endif %}
+
+
+          <br>
+          <h3>Tweets de {{ user.username }}</h3>
+          <br>
+
+        
+
+
+{% endblock %}
